@@ -71,6 +71,34 @@ create_file(
 )
 
 
+# Direct conflicts between directories
+
+# add || add directories
+# Nothing to do
+
+# add || rename directories
+create_file(
+    "add-rename-directories-setup/add-rename-directories-setup",
+    "Parent directory added by setup and renamed by site 2.",
+)
+
+# rename || rename directories to same name
+create_file(
+    "rename-rename-directories-to-same-setup-1/add-rename-directories-setup-1",
+    "Parent directory added by setup and renamed by site 1.",
+)
+create_file(
+    "rename-rename-directories-to-same-setup-2/add-rename-directories-setup-2",
+    "Parent directory added by setup and renamed by site 2.",
+)
+
+# rename || rename directories to different names
+create_file(
+    "rename-rename-directories-to-different/rename-rename-directories-to-different",
+    "Parent folder added by setup and renamed by both site 1 and 2.",
+)
+
+
 # Indirect conflicts
 
 # update file || remove parent folder

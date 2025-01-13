@@ -73,6 +73,31 @@ dst_path = ROOT / "rename-file-rename-directory-to-same"
 src_path.rename(dst_path)
 
 
+# Direct conflicts between directories
+
+# add || add directories
+create_file(
+    "add-add-directories/add-add-directories-site-1",
+    "Parent directory added by site 1.",
+)
+
+# add || rename directories
+create_file(
+    "add-rename-directories/add-rename-directories-site-1",
+    "Parent directory added by site 1.",
+)
+
+# rename || rename directories to same name
+src_path = ROOT / "rename-rename-directories-to-same-setup-1"
+dst_path = ROOT / "rename-rename-directories-to-same"
+src_path.rename(dst_path)
+
+# rename || rename directories to different names
+src_path = ROOT / "rename-rename-directories-to-different"
+dst_path = ROOT / "rename-rename-directories-to-different-site-1"
+src_path.rename(dst_path)
+
+
 # Indirect conflicts
 
 # update file || remove parent folder
