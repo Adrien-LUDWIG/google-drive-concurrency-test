@@ -1,9 +1,6 @@
 import os
 
-from dotenv import load_dotenv
 from pathlib import Path
-
-load_dotenv()
 
 FILE_CONTENT = "File added by setup."
 ROOT = Path(os.environ["GOOGLE_DRIVE_FOLDER_PATH"])

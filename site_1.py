@@ -1,9 +1,6 @@
 import os
 
-from dotenv import load_dotenv
 from pathlib import Path
-
-load_dotenv()
 
 root = Path(os.environ["GOOGLE_DRIVE_FOLDER_PATH"])
 
