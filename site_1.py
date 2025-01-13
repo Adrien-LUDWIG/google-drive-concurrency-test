@@ -2,28 +2,35 @@ import os
 
 from pathlib import Path
 
-root = Path(os.environ["GOOGLE_DRIVE_FOLDER_PATH"])
+UPDATE_CONTENT = "Content updated by site 1."
+ROOT = Path(os.environ["GOOGLE_DRIVE_FOLDER_PATH"])
+
+
+def get_absolute_path(relative_path: Path):
+    return (ROOT / relative_path).with_suffix(".txt")
 
 
 def create_file(relative_path: Path, content: str = None):
-    path = (root / relative_path).with_suffix(".txt")
+    path = get_absolute_path(relative_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w") as new_file:
         if content:
             new_file.write(content)
 
 
-# Direct
+def update_file(relative_path: Path):
+    path = get_absolute_path(relative_path)
+    with path.open("a") as new_file:
+        new_file.write(UPDATE_CONTENT)
+
+
+# Direct conflicts between files
 
 # update || remove
-path = (root / "update-remove").with_suffix(".txt")
-with path.open("a") as file:
-    file.write("Content updated by site 1.")
+update_file("update-remove")
 
 # update || update
-path = (root / "update-update").with_suffix(".txt")
-with path.open("a") as file:
-    file.write("Content updated by site 1.")
+update_file("update-update")
 
 # add || add
 create_file("add-add", "File added by site 1.")
@@ -32,9 +39,19 @@ create_file("add-add", "File added by site 1.")
 create_file("add-rename", "File added by site 1.")
 
 # rename || rename to same name
-path = (root / "rename-rename-to-same-setup1").with_suffix(".txt")
+path = get_absolute_path("rename-rename-to-same-setup1")
 path.rename(path.with_stem("rename-rename-to-same"))
 
 # rename || rename to different names
-path = (root / "rename-rename-to-different").with_suffix(".txt")
+path = get_absolute_path("rename-rename-to-different")
 path.rename(path.with_stem("rename-rename-to-different-site1"))
+
+
+# Indirect conflicts
+
+# update file || remove parent folder
+update_file("indirect-update-remove-directory/indirect-update-remove-file")
+
+# cycle
+path = ROOT / "cycle-1-directory"
+path.rename(ROOT / "cycle-2-directory/cycle-1-directory")

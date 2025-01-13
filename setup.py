@@ -42,3 +42,12 @@ create_file(
     "rename-rename-to-different",
     "File added by setup and renamed by both site 1 and 2.",
 )
+
+# Indirect conflicts
+
+# update file || remove parent folder
+create_file("indirect-update-remove-directory/indirect-update-remove-file")
+
+# cycle
+create_file("cycle-1-directory/cycle-1-file")
+create_file("cycle-2-directory/cycle-2-file")
