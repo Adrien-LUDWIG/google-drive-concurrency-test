@@ -47,6 +47,32 @@ path = get_absolute_path("rename-rename-to-different")
 path.rename(path.with_stem("rename-rename-to-different-site1"))
 
 
+# Direct conflicts between file and directory
+
+# add file || add directory
+path = ROOT / "add-file-add-directory"
+with path.open("w") as new_file:
+    new_file.write("File added by site 1.")
+
+# add file || rename directory
+path = ROOT / "add-file-rename-directory"
+with path.open("w") as new_file:
+    new_file.write("File added by site 1.")
+
+# add directory || rename file
+create_file(
+    "add-directory-rename-file/add-directory-rename-file",
+    "Parent directory added by site 1.",
+)
+
+# rename file || rename directory to same name
+src_path = (ROOT / "rename-file-rename-directory-to-same-setup-file").with_suffix(
+    ".txt"
+)
+dst_path = ROOT / "rename-file-rename-directory-to-same"
+src_path.rename(dst_path)
+
+
 # Indirect conflicts
 
 # update file || remove parent folder

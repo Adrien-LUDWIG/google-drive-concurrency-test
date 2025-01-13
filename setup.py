@@ -15,7 +15,7 @@ def create_file(relative_path: Path, content: str = None):
         new_file.write(content)
 
 
-# Direct
+# Direct conflicts between files
 
 # update || remove
 create_file("update-remove")
@@ -42,6 +42,34 @@ create_file(
     "rename-rename-to-different",
     "File added by setup and renamed by both site 1 and 2.",
 )
+
+
+# Direct conflicts between file and directory
+
+# add file || add directory
+# Nothing to do
+
+# add file || rename directory
+create_file(
+    "add-file-rename-directory-setup/add-file-rename-directory-setup",
+    "Parent directory added by setup and renamed by site 2.",
+)
+
+# add directory || rename file
+create_file(
+    "add-directory-rename-file-setup", "File added by setup and renamed by site 2."
+)
+
+# rename file || rename directory to same name
+create_file(
+    "rename-file-rename-directory-to-same-setup-file",
+    "File added by setup and renamed by site 1.",
+)
+create_file(
+    "rename-file-rename-directory-to-same-setup-directory/rename-file-rename-directory-to-same-setup",
+    "Parent directory added by setup and renamed by site 2.",
+)
+
 
 # Indirect conflicts
 

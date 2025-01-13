@@ -14,7 +14,7 @@ def create_file(relative_path: Path, content: str = None):
             new_file.write(content)
 
 
-# Direct
+# Direct conflicts between files
 
 # update || remove
 path = (ROOT / "update-remove").with_suffix(".txt")
@@ -39,6 +39,30 @@ path.rename(path.with_stem("rename-rename-to-same"))
 # rename || rename to different names
 path = (ROOT / "rename-rename-to-different").with_suffix(".txt")
 path.rename(path.with_stem("rename-rename-to-different-site2"))
+
+
+# Direct conflicts between file and directory
+
+# add file || add directory
+create_file(
+    "add-file-add-directory/add-file-add-directory",
+    "Parent folder added by site 2.",
+)
+
+# add file || rename directory
+src_path = ROOT / "add-file-rename-directory-setup"
+dst_path = ROOT / "add-file-rename-directory"
+src_path.rename(dst_path)
+
+# add directory || rename file
+src_path = (ROOT / "add-directory-rename-file-setup").with_suffix(".txt")
+dst_path = ROOT / "add-directory-rename-file"
+src_path.rename(dst_path)
+
+# rename file || rename directory to same name
+src_path = ROOT / "rename-file-rename-directory-to-same-setup-directory"
+dst_path = ROOT / "rename-file-rename-directory-to-same"
+src_path.rename(dst_path)
 
 # Indirect conflicts
 
