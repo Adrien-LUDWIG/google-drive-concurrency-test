@@ -22,8 +22,11 @@ On one site, run `python setup.py`.
 Make sure the created files and directories are synchronized on the two sites before
 continuing.
 
-Disable synchronization either by using the Google Drive desktop option "Pause syncing"
+Disable synchronization either by using the Google Drive desktop option "Pause syncing" (see image below)
 or by disconnecting internet.
+
+![Screenshot of Google Drive's Windows interface](./images/google-drive-pause-syncing-option.jpg) \
+*Google Drive's "Pause Syncing" option*
 
 Run `python site_1.py` on site 1 and  `python site_2.py` on site 2.
 
