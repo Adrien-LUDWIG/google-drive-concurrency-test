@@ -7,3 +7,26 @@ This is nothing fancy, simply three python scripts creating, renaming and deleti
 and folders.
 But the use of scripts offers a reproduceable test with with little hand work,
 so less human errors, and serves as reference of what was exactly tested.
+
+## Usage
+
+Install the Google Drive client on two machines and connect them to the same test
+account.
+
+Clone this repository.
+
+Follow the instructions in .env.example to create your own environment.
+
+On one site, run `python setup.py`.
+
+Make sure the created files and directories are synchronized on the two sites before
+continuing.
+
+Disable synchronization either by using the Google Drive desktop option "Pause syncing"
+or by disconnecting internet.
+
+Run `python site_1.py` on site 1 and  `python site_2.py` on site 2.
+
+Reconnect both machines and wait for them to synchronize.
+
+Explore the results. You can have a look to the scripts to see all the tested scenarios.
